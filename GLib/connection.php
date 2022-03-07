@@ -2,9 +2,7 @@
 $servername = "localhost:8111";
 $db_username = "root";
 $db_password = "";
-$db= "project";
-$default_rc_no="admin";
-$default_password="admin";
+$db= "glib";
 // Create connection
 $conn = mysqli_connect($servername, $db_username, $db_password, $db);
 
