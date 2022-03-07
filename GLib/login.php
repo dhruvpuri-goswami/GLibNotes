@@ -79,7 +79,7 @@
             $_SESSION['username']=$rows['user_name'];
             echo "<script>
                 alert('You are user!!!');
-                window.location.href='home.php';
+                window.location.href='userhome.php';
             </script>";
         }
         else
