@@ -2,12 +2,14 @@
     session_start();
     if(isset($_SESSION['username']))
     {
+        $email=$_SESSION['username'];
+        include 'connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>W3.CSS Template</title>
+    <title>Glib Notes</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -35,8 +37,8 @@
     <!-- Side Navigation -->
     <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;"
         id="mySidebar">
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom w3-large w3-center"><img
-                src="logo.png" style="width:80%;"></a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-border-bottom w3-large w3-center"><img src="logo.png"
+                style="width:80%;"></a>
         <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"
             class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-teal w3-button w3-hover-black w3-left-align"
@@ -44,12 +46,33 @@
                 class="w3-padding fa fa-pencil"></i></a>
         <form method="POST" action="" class="w3-containe w3-center w3-bar-item">
             <input type="text" class="w3-margin-top w3-padding-16" style="height: 35px;padding-left: 10px;" width="30%"
-                placeholder="Find Your Notes...">
+                placeholder="Find Your Notes..." name="search">
             <input type="submit" class="w3-button w3-teal w3-round" style="height: 39px;margin-bottom: 5px;width:50px;"
                 value="GO" name="go">
         </form>
-
-        <a href="#" class="w3-bar-item w3-button w3-display-bottomleft w3-teal"><i
+        <?php
+            if(isset($_REQUEST['go']))
+            {
+                $search = strtoupper($_REQUEST['search']);
+                $sql2 = "SELECT * FROM tbl_uploads WHERE keyword='$search'";
+                $result2 = mysqli_query($conn, $sql2);
+                $keywords = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+                foreach($keywords as $keyword)
+                {
+                    $file_name = $keyword['file_name'];
+                    $user_id = $keyword['user_id'];
+                    $sql3 = "SELECT * FROM tbl_user WHERE user_id='$user_id'";
+                    $result3 = mysqli_query($conn, $sql3);
+                    $userinfo = mysqli_fetch_assoc($result3);
+                    $user_name = $userinfo['user_name'];
+            ?>
+        <button type="submit"
+            class="w3-bar-item w3-button w3-teal w3-round w3-hover-black w3-margin-top"><?php echo $file_name. " - ". $user_name; ?></button>
+        <?php
+                }
+            }
+        ?>
+        <a href="logout.php" class="w3-bar-item w3-button w3-display-bottomleft w3-teal"><i
                 class="fa fa-remove w3-margin-right"></i>Log Out</a>
     </nav>
 
@@ -62,22 +85,67 @@
                 <h2>Upload Notes</h2>
             </div>
             <div class="w3-panel">
-                <label>Topic Name</label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text">
-                <label>From</label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text">
-                <label>Subject</label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text">
-                <input class="w3-input w3-border w3-margin-bottom" style="height:150px"
-                    placeholder="What's on your mind?">
-                <div class="w3-section">
-                    <a class="w3-button w3-red" onclick="document.getElementById('id01').style.display='none'">Cancel
-                         <i class="fa fa-remove"></i></a>
-                    <a class="w3-button w3-light-grey w3-right"
-                        onclick="document.getElementById('id01').style.display='none'">Send  <i
-                            class="fa fa-paper-plane"></i></a>
-                </div>
+                <form style="margin-top: 7rem;" action="" method="POST" enctype="multipart/form-data">
+                    <label>Notes Name</label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" name="name" required>
+                    <label>Keyword</label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" name="keyword" required>
+                    <label>Upload Notes</label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="file" name="fileToUpload" required>
+                    <input class="w3-input w3-border w3-margin-bottom" style="height:100px" placeholder="Description"
+                        name="desc" required>
+                    <div class="w3-section">
+                        <a class="w3-button w3-red"
+                            onclick="document.getElementById('id01').style.display='none'">Cancel
+                             <i class="fa fa-remove"></i></a>
+                        <button class="w3-button w3-teal w3-right" type="submit" name="submit">Upload  <i
+                                class="fa fa-paper-plane"></i></button>
+                    </div>
+                </form>
             </div>
+            <?php
+                if(isset($_REQUEST['submit']))
+                {
+                $filename = $_FILES["fileToUpload"]["name"];
+                $tempname = $_FILES["fileToUpload"]["tmp_name"];
+                $folder = "uploads_images/";
+                $notes_name = $_REQUEST['name'];
+                $notes_desc = $_REQUEST['desc'];
+                $notes_keyword = strtoupper($_REQUEST['keyword']);
+                date_default_timezone_set("Asia/Kolkata");
+                $date = date("Y-m-d");
+                $sql = "SELECT * FROM tbl_user WHERE user_name='$email'";
+                $result = mysqli_query($conn,$sql);
+                $rows = mysqli_fetch_assoc($result);
+                $user_id = $rows['user_id'];
+
+                $sql1 = "INSERT INTO tbl_uploads (user_id, uploaded_file, keyword, file_name, file_description,
+                uploaded_date)
+                VALUES ('$user_id', '$filename', '$notes_keyword', '$notes_name', '$notes_desc', '$date')";
+                if (mysqli_query($conn, $sql1))
+                {
+                if (move_uploaded_file($tempname, $folder.$filename))
+                {
+                sleep(2);
+                echo '<script>
+                alert("Notes Uploaded Successfully Successfully...");
+                </script>';
+                }
+                else {
+                sleep(2);
+                echo '<script>
+                alert("Something Went Wrong...")
+                </script>';
+                }
+                }
+                else {
+                sleep(2);
+                echo '<script>
+                alert("Something Went Wrong...")
+                </script>';
+                }
+                }
+                ?>
         </div>
     </div>
 
@@ -91,7 +159,7 @@
     <div class="w3-main" style="margin-left:320px;">
         <div class="w3-bar w3-teal w3-right">
             <a href="#" class="w3-bar-item w3-button w3-mobile">Home</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Your Notes</a>
+            <a href="your_notes.php" class="w3-bar-item w3-button w3-mobile">Your Notes</a>
             <a href="#" class="w3-bar-item w3-button w3-mobile">Edit Profile</a>
             <a href="#" class="w3-bar-item w3-button w3-mobile">Log Out</a>
 
@@ -106,8 +174,6 @@
             <img class="w3-round  w3-animate-top" src="/w3images/avatar3.png" style="width:20%;">
             <h5 class="w3-opacity">Subject: Remember Me</h5>
             <h4><i class="fa fa-clock-o"></i> From Borge Refsnes, Sep 27, 2015.</h4>
-
-
         </div>
 
         <script>
