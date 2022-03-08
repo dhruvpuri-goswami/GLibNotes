@@ -42,12 +42,12 @@
         <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"
             class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-teal w3-button w3-hover-black w3-left-align"
-            onclick="document.getElementById('id01').style.display='block'">Upload Notes <i
-                class="w3-padding fa fa-pencil"></i></a>
+            onclick="document.getElementById('id01').style.display='block'"><i
+                class="w3-padding fa fa-pencil"></i>Upload Notes </a>
         <form method="POST" action="" class="w3-containe w3-center w3-bar-item">
             <input type="text" class="w3-margin-top w3-padding-16" style="height: 35px;padding-left: 10px;" width="30%"
                 placeholder="Find Your Notes..." name="search">
-            <input type="submit" class="w3-button w3-teal w3-round" style="height: 39px;margin-bottom: 5px;width:50px;"
+            <input type="submit" class="w3-button w3-teal w3-round" style="height: 37px;margin-bottom: 5px;width:50px;"
                 value="GO" name="go">
         </form>
         <?php
@@ -66,8 +66,11 @@
                     $userinfo = mysqli_fetch_assoc($result3);
                     $user_name = $userinfo['user_name'];
             ?>
-        <button type="submit"
-            class="w3-bar-item w3-button w3-teal w3-round w3-hover-black w3-margin-top"><?php echo $file_name. " - ". $user_name; ?></button>
+        <button type="submit">
+            <ul class="w3-ul">
+                <li><?php echo $file_name. " - ". $user_name; ?></li>
+            </ul>
+        </button>
         <?php
                 }
             }
@@ -81,11 +84,12 @@
         <div class="w3-modal-content w3-animate-zoom">
             <div class="w3-container w3-padding w3-teal">
                 <span onclick="document.getElementById('id01').style.display='none'"
-                    class="w3-button w3-red w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
+                    class="w3-button w3-right w3-large w3-round" style="margin-top: 0.8rem;"><i
+                        class="fa fa-remove"></i></span>
                 <h2>Upload Notes</h2>
             </div>
             <div class="w3-panel">
-                <form style="margin-top: 7rem;" action="" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <label>Notes Name</label>
                     <input class="w3-input w3-border w3-margin-bottom" type="text" name="name" required>
                     <label>Keyword</label>
