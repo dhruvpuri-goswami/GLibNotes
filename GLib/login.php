@@ -78,14 +78,12 @@
         {
             $_SESSION['username']=$rows['user_name'];
             echo "<script>
-                alert('You are user!!!');
                 window.location.href='userhome.php';
             </script>";
         }
         else
         {
             echo "<script>
-                alert('You are not user!!!');
                 window.location.href='register.php';
             </script>";
         }

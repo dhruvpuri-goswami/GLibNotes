@@ -29,6 +29,25 @@
     .w3-bar-block .w3-bar-item {
         padding: 16px
     }
+
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding-top: 56.25%;
+        /* 16:9 Aspect Ratio */
+    }
     </style>
 </head>
 
@@ -60,17 +79,21 @@
                 foreach($keywords as $keyword)
                 {
                     $file_name = $keyword['file_name'];
+                    $upload_id = $keyword['u_id'];
                     $user_id = $keyword['user_id'];
                     $sql3 = "SELECT * FROM tbl_user WHERE user_id='$user_id'";
                     $result3 = mysqli_query($conn, $sql3);
                     $userinfo = mysqli_fetch_assoc($result3);
                     $user_name = $userinfo['user_name'];
-            ?>
-        <button type="submit">
-            <ul class="w3-ul">
-                <li><?php echo $file_name. " - ". $user_name; ?></li>
-            </ul>
-        </button>
+            ?>]
+        <form action="" method="post">
+            <input type="hidden" name="id" value="<?php echo $upload_id; ?>">
+            <button type="submit" name="btnpdfopen">
+                <ul class="w3-ul">
+                    <li><?php echo $file_name. " - ". $user_name; ?></li>
+                </ul>
+            </button>
+        </form>
         <?php
                 }
             }
@@ -173,11 +196,28 @@
         <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right"
             onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-pencil"></i></a>
 
-        <div id="Borge" class="w3-container person">
-            <br>
-            <img class="w3-round  w3-animate-top" src="/w3images/avatar3.png" style="width:20%;">
-            <h5 class="w3-opacity">Subject: Remember Me</h5>
-            <h4><i class="fa fa-clock-o"></i> From Borge Refsnes, Sep 27, 2015.</h4>
+        <div id="Borge" class="">
+            <?php
+            if(isset($_REQUEST['btnpdfopen']))
+            {
+                $id = $_REQUEST['id'];
+                $sql4 = "SELECT * FROM tbl_uploads WHERE u_id='$id'";
+                $result4 = mysqli_query($conn,$sql4);
+                $notes = mysqli_fetch_assoc($result4);
+                $pdf = $notes['uploaded_file'];
+                ?><br>
+            <div class="container">
+                <iframe class="responsive-iframe" src="<?php echo "uploads_images/".$pdf; ?>">
+                </iframe>
+            </div>
+            <?php    
+            }
+            else
+            {?>
+            <h2>Welcome to Glib Notes...</h2>
+            <?php
+            }
+            ?>
         </div>
 
         <script>
