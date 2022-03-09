@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -38,23 +41,51 @@
                                 <div class="one-frm">
 
                                     <label>E-Mail ID</label>
-                                    <input type="email" name="email" id="username" placeholder="Enter Your Email-ID" required="">
+                                    <input type="email" name="email" id="username" placeholder="Enter Your Email-ID"
+                                        required="">
                                 </div>
                                 <div class="one-frm">
                                     <label>Password</label>
-                                    <input type="password" name="password" id="password" placeholder="Enter Password" required="">
+                                    <input type="password" name="password" id="password" placeholder="Enter Password"
+                                        required="">
                                 </div>
-                                <button type="submit" class="btn btn-style mt-3 w3-teal" name="btn-login">Sign In </button>
-                                <p class="already">Don't have an account? <a href="register.php" class="w3-hover-text-teal">Register Now</a></p>
-
+                                <button type="submit" class="btn btn-style mt-3 w3-teal" name="btn-login">Sign In
+                                </button>
+                                <p class="already">Don't have an account? <a href="register.php"
+                                        class="w3-hover-text-teal">Register Now</a></p>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
     </section>
-
 </body>
 
 </html>
+<?php
+    include 'connection.php';
+    if(isset($_REQUEST['btn-login']))
+    {
+        $mail=$_REQUEST['email'];
+        $pass=$_REQUEST['password'];
+        echo $mail.$pass;
+        $sql="SELECT * FROM tbl_user WHERE email='$mail' AND password='$pass'";
+        $result=mysqli_query($conn,$sql);
+        $rows=mysqli_fetch_assoc($result);
+        $count=mysqli_num_rows($result);
+        if($count>=1)
+        {
+            $_SESSION['username']=$rows['user_name'];
+            echo "<script>
+                window.location.href='userhome.php';
+            </script>";
+        }
+        else
+        {
+            echo "<script>
+                window.location.href='register.php';
+            </script>";
+        }
+    }
+?>
