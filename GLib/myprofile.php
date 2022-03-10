@@ -189,7 +189,7 @@
         <div class="w3-bar w3-teal">
             <a href="logout.php"
                 class="w3-bar-item w3-padding-24 w3-right w3-margin-right w3-button w3-mobile">Logout</a>
-            <a href="myprofile.php" class="w3-padding-24 w3-right w3-bar-item w3-button w3-mobile">My Profile</a>
+            <a href="#" class="w3-padding-24 w3-right w3-bar-item w3-button w3-mobile">My Profile</a>
             <a href="your_notes.php" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Your Notes</a>
             <a href="userhome.php" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Home</a>
         </div>
@@ -201,23 +201,74 @@
         <div class="w3-card w3-margin w3-round-large w3-margin w3-padding">
             <div class="w3-card w3-margin w3-round-large">
                 <div class="w3-padding">
-                    <h2><b>Edit Profile</b></h2>
+                    <h2><b>My Profile</b></h2>
                 </div>
             </div>
-            <div class="w3-row-padding">
-                <div class="w3-third">
-                    <label>First Name</label>
-                    <input class="w3-input" type="text" placeholder="One">
+            <!-- Page Container -->
+            <div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+                <!-- The Grid -->
+                <div class="w3-row-padding">
+
+                    <!-- Left Column -->
+                    <div class="w3-third">
+
+                        <div class="w3-white w3-text-grey w3-card-4">
+                            <div class="w3-display-container">
+                                <img src="./uploads_images/male.png" style="width:100%" alt="Avatar">
+                                <div class="w3-container w3-text-black">
+                                    <h2>Dhruvpuri Goswami</h2>
+                                </div>
+                            </div>
+                            <div class="w3-container">
+                                <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Surat
+                                </p>
+                                <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Gujarat,India
+                                </p>
+                                <p><i
+                                        class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>goswami@gmail.com
+                                </p>
+                                <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>7777777777</p>
+                                <button type="submit" class="w3-button w3-round-large w3-padding w3-teal"
+                                    style="text-decoration: none;"><a href="editprofile.php">Edit Profile</a></button>
+                                <hr>
+                            </div>
+                        </div><br>
+
+                        <!-- End Left Column -->
+                    </div>
+
+
+
+                    <!-- Right Column -->
+                    <div class="w3-twothird">
+
+                        <div class="w3-container w3-card w3-white w3-margin-bottom">
+                            <h2 class="w3-text-grey w3-padding-16"><i
+                                    class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>My Notes
+                            </h2>
+                            <div class="w3-container">
+                                <h5 class="w3-opacity"><b>Java Complete Reference</b></h5>
+                                <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 -
+                                    <span class="w3-tag w3-teal w3-round">Current</span>
+                                </h6>
+                                <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur
+                                    est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque
+                                    repellendus iure, iste.</p>
+                                <hr>
+                            </div>
+                        </div>
+
+                        <!-- End Right Column -->
+                    </div>
+
+                    <!-- End Grid -->
                 </div>
-                <div class="w3-third">
-                    <label>First Name</label>
-                    <input class="w3-input" type="text" placeholder="Two">
-                </div>
-                <div class="w3-third">
-                    <label>First Name</label>
-                    <input class="w3-input" type="text" placeholder="Three">
-                </div>
+
+                <!-- End Page Container -->
             </div>
+
+
 
         </div>
     </div>
