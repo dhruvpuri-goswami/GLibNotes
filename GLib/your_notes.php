@@ -243,7 +243,9 @@
                 $sql4="DELETE FROM tbl_uploads WHERE u_id='$id'";
                 if(mysqli_query($conn,$sql4))
                 {
-                    echo "<script>alert('Deleted Successfully')</script>";
+                    echo '<script>alert("Deleted Successfully");
+                    window.location.href="your_notes.php";
+                    </script>';
                 }
                 else
                 {
