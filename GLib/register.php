@@ -2,8 +2,8 @@
     include "connection.php";
     if(isset($_POST['btn-signup']))
 	{
-		$post_password1=md5(mysqli_real_escape_string($conn,$_POST['password']));
-		$post_password2=md5(mysqli_real_escape_string($conn,$_POST['con_password']));
+		$post_password1=mysqli_real_escape_string($conn,$_POST['password']);
+		$post_password2=mysqli_real_escape_string($conn,$_POST['con_password']);
 		if($post_password1 == $post_password2)
 		{
             $post_uname=mysqli_real_escape_string($conn,$_POST['uname']);
@@ -13,7 +13,7 @@
 			if (mysqli_query($conn, $sql)) 
             {
                 sleep(2);
-                header("location: ../login/login.php");
+                header("location: login.php");
             }
             else 
             {
@@ -65,22 +65,29 @@
                                 <div class="one-frm">
 
                                     <label>E-Mail ID</label>
-                                    <input type="email" name="email" id="email" placeholder="Enter Your Email-ID" required="">
+                                    <input type="email" name="email" id="email" placeholder="Enter Your Email-ID"
+                                        required="">
                                 </div>
                                 <div class="one-frm">
                                     <label>User Name</label>
-                                    <input type="uname" name="uname" id="uname" placeholder="Enter User Name .. (It will displayed in your profile)" required="">
+                                    <input type="uname" name="uname" id="uname"
+                                        placeholder="Enter User Name .. (It will displayed in your profile)"
+                                        required="">
                                 </div>
                                 <div class="one-frm">
                                     <label>Password</label>
-                                    <input type="password" name="password" id="password" placeholder="Enter Password" required="">
+                                    <input type="password" name="password" id="password" placeholder="Enter Password"
+                                        required="">
                                 </div>
                                 <div class="one-frm">
                                     <label>Conform Password</label>
-                                    <input type="password" name="con_password" id="con_password" placeholder="Enter Conform Password" required="">
+                                    <input type="password" name="con_password" id="con_password"
+                                        placeholder="Enter Conform Password" required="">
                                 </div>
-                                <button type="submit" class="btn btn-style mt-3 w3-teal" name="btn-signup">Sign Up </button>
-                                <p class="already">Do you have an account? <a href="login.php" class="w3-hover-text-teal">Login Now</a></p>
+                                <button type="submit" class="btn btn-style mt-3 w3-teal" name="btn-signup">Sign Up
+                                </button>
+                                <p class="already">Do you have an account? <a href="login.php"
+                                        class="w3-hover-text-teal">Login Now</a></p>
 
                             </form>
                         </div>
