@@ -187,10 +187,11 @@
     <!-- Page content -->
     <div class="w3-main" style="margin-left:320px;">
         <div class="w3-bar w3-teal">
-            <a href="#" class="w3-bar-item w3-padding-24 w3-right w3-margin-right w3-button w3-mobile">Logout</a>
-            <a href="" class="w3-padding-24 w3-right w3-bar-item w3-button w3-mobile">Edit Profile</a>
+            <a href="logout.php"
+                class="w3-bar-item w3-padding-24 w3-right w3-margin-right w3-button w3-mobile">Logout</a>
+            <a href="editprofile.php" class="w3-padding-24 w3-right w3-bar-item w3-button w3-mobile">Edit Profile</a>
             <a href="your_notes.php" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Your Notes</a>
-            <a href="#" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Home</a>
+            <a href="userhome.php" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Home</a>
         </div>
         <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top"
             onclick="w3_open()"></i>
@@ -231,7 +232,6 @@
             <br>
             <?php
                 }
-                
         ?>
 
         </div>

@@ -191,108 +191,84 @@
                 class="w3-bar-item w3-padding-24 w3-right w3-margin-right w3-button w3-mobile">Logout</a>
             <a href="editprofile.php" class="w3-padding-24 w3-right w3-bar-item w3-button w3-mobile">Edit Profile</a>
             <a href="your_notes.php" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Your Notes</a>
-            <a href="#" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Home</a>
+            <a href="userhome.php" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Home</a>
         </div>
         <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top"
             onclick="w3_open()"></i>
         <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right"
             onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-pencil"></i></a>
 
-        <div id="Borge" class="w3-card w3-margin w3-round-large">
-            <?php
-            if(isset($_REQUEST['btnpdfopen']))
-            {
-                $id = $_REQUEST['id'];
-                $sql4 = "SELECT * FROM tbl_uploads WHERE u_id='$id'";
-                $result4 = mysqli_query($conn,$sql4);
-                $notes = mysqli_fetch_assoc($result4);
-                $pdf = $notes['uploaded_file'];
-                $uploaded_date = $notes['uploaded_date'];
-                $name=$notes['file_name'];
-                $desc=$notes['file_description'];
-              
-                ?><br>
-            <ul class="w3-ul w3-white w3-margin w3-card-4 w3-round-large">
-                <li class="w3-bar">
-                    <img src="../GLib/uploads_images/user.png" class="w3-bar-item w3-circle w3-hide-small"
-                        style="width:85px">
-                    <div class="w3-bar-item">
-                        <span class="w3-xlarge"><?php echo "<b>".$name."</b>" ?></span><br>
-                        <span>Uploaded Date : <?php echo $uploaded_date; ?></span>
-                    </div>
-                </li>
-            </ul>
+        <div class="w3-card w3-margin w3-round-large w3-margin w3-padding">
             <div class="w3-card w3-margin w3-round-large">
-                <div class="container">
-                    <iframe class="responsive-iframe" src="<?php echo "uploads_images/".$pdf; ?>">
-                    </iframe>
+                <div class="w3-padding">
+                    <h2><b>Edit Profile</b></h2>
                 </div>
             </div>
-            <div class="w3-padding">
-                <h3><b>Description</b></h3>
+            <div class="w3-row-padding">
+                <div class="w3-third">
+                    <label>First Name</label>
+                    <input class="w3-input" type="text" placeholder="One">
+                </div>
+                <div class="w3-third">
+                    <label>First Name</label>
+                    <input class="w3-input" type="text" placeholder="Two">
+                </div>
+                <div class="w3-third">
+                    <label>First Name</label>
+                    <input class="w3-input" type="text" placeholder="Three">
+                </div>
             </div>
-            <div class="w3-card w3-margin w3-padding w3-round-large">
-                <p><?php echo $desc;?></p>
-            </div><br><br>
-            <?php    
-            }
-            else
-            {?>
-            <div class="w3-padding">
-                <h2>Welcome to Glib Notes...</h2>
-            </div>
-            <?php
-            }
-            ?>
+
         </div>
+    </div>
 
-        <script>
-        var openInbox = document.getElementById("myBtn");
-        openInbox.click();
+    <script>
+    var openInbox = document.getElementById("myBtn");
+    openInbox.click();
 
-        function w3_open() {
-            document.getElementById("mySidebar").style.display = "block";
-            document.getElementById("myOverlay").style.display = "block";
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+    function myFunc(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            x.previousElementSibling.className += " w3-red";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-red", "");
         }
+    }
 
-        function w3_close() {
-            document.getElementById("mySidebar").style.display = "none";
-            document.getElementById("myOverlay").style.display = "none";
+    openMail("Borge")
+
+    function openMail(personName) {
+        var i;
+        var x = document.getElementsByClassName("person");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
         }
-
-        function myFunc(id) {
-            var x = document.getElementById(id);
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-                x.previousElementSibling.className += " w3-red";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-                x.previousElementSibling.className =
-                    x.previousElementSibling.className.replace(" w3-red", "");
-            }
+        x = document.getElementsByClassName("test");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" w3-light-grey", "");
         }
+        document.getElementById(personName).style.display = "block";
+        event.currentTarget.className += " w3-light-grey";
+    }
+    </script>
 
-        openMail("Borge")
-
-        function openMail(personName) {
-            var i;
-            var x = document.getElementsByClassName("person");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            x = document.getElementsByClassName("test");
-            for (i = 0; i < x.length; i++) {
-                x[i].className = x[i].className.replace(" w3-light-grey", "");
-            }
-            document.getElementById(personName).style.display = "block";
-            event.currentTarget.className += " w3-light-grey";
-        }
-        </script>
-
-        <script>
-        var openTab = document.getElementById("firstTab");
-        openTab.click();
-        </script>
+    <script>
+    var openTab = document.getElementById("firstTab");
+    openTab.click();
+    </script>
 
 </body>
 

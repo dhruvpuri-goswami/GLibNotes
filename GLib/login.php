@@ -49,6 +49,9 @@
                                     <input type="password" name="password" id="password" placeholder="Enter Password"
                                         required="">
                                 </div>
+                                <a href="forgot_password.php" style="float: right;text-decoration: none;"
+                                    class="w3-text-teal w3-margin-bottom"><b>Forgot the
+                                        password?</b></a>
                                 <button type="submit" class="btn btn-style mt-3 w3-teal" name="btn-login">Sign In
                                 </button>
                                 <p class="already">Don't have an account? <a href="register.php"
