@@ -8,7 +8,7 @@ if(isset($_POST['submit']))
 	$con_pass = $_POST['con_pass'];
 	if($pass==$con_pass)
 	{
-		$sql = "UPDATE tbl_user SET password='$pass' WHERE email_id='$e'";
+		$sql = "UPDATE tbl_user SET password='$pass' WHERE email='$e'";
 
         if (mysqli_query($conn,$sql)) {
             session_destroy();
@@ -47,7 +47,7 @@ window.setTimeout(function() {
     <!-- //Meta tag Keywords -->
     <link href="//fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
     <!--/Style-CSS -->
-    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="stylelogin.css" type="text/css" media="all" />
     <!--//Style-CSS -->
     <style>
     .center {

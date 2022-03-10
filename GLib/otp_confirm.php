@@ -34,7 +34,7 @@
     <!-- //Meta tag Keywords -->
     <link href="//fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
     <!--/Style-CSS -->
-    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="stylelogin.css" type="text/css" media="all" />
     <!--//Style-CSS -->
     <style>
     .center {

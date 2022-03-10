@@ -51,7 +51,7 @@
                                 </div>
                                 <button type="submit" class="btn btn-style mt-3 w3-teal"
                                     name="btn-forgot-password">Submit</button>
-                                <p class="already">Don't have an account? <a href="signup.php">Register Now</a></p>
+                                <p class="already">Don't have an account? <a href="register.php">Register Now</a></p>
                                 <p class="already">OR</p>
                                 <p class="already">Already have an account? <a href="login.php">Login Here</a></p>
                             </form>
@@ -72,21 +72,21 @@
     {
         $post_email=$_REQUEST['email'];
         include 'connection.php';
-        $sql="SELECT * FROM tbl_user WHERE email_id='$post_email'";
+        $sql="SELECT * FROM tbl_user WHERE email='$post_email'";
         $result=mysqli_query($conn,$sql);
         $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-        $mail=$row['email_id'];
-        $otp=rand(1000,9999);
+        $mail=$row['email'];
+        $otp=rand(100000,999999);
         if($post_email==$mail)
         {
             $to = "$mail";
             $subject = "Forgot Password";
             $otp=rand(1000,9999);
 
-            $message = "<b><h3>E-Ration Team.</h3></b>";
+            $message = "<b><h3>Flib Notes Team.</h3></b>";
             $message .= "<h5>Your OTP is $otp.<br>Don't share with anyone.</h5>";
             
-            $header = "From:nallaabhi2003@gmail.com \r\n";
+            $header = "From:glibnotes@gmail.com \r\n";
             $header .= "MIME-Version: 1.0\r\n";
             $header .= "Content-type: text/html\r\n";
             

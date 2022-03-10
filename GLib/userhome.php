@@ -210,11 +210,15 @@
                 $uploaded_date = $notes['uploaded_date'];
                 $name=$notes['file_name'];
                 $desc=$notes['file_description'];
-              
+                $id=$notes['user_id'];
+                $sql5="SELECT * FROM tbl_user WHERE user_id='$id'";
+                $result5=mysqli_query($conn,$sql5);
+                $fetch=mysqli_fetch_assoc($result5);
+                $img=$fetch['img'];
                 ?><br>
             <ul class="w3-ul w3-white w3-margin w3-card-4 w3-round-large">
                 <li class="w3-bar">
-                    <img src="../GLib/uploads_images/user.png" class="w3-bar-item w3-circle w3-hide-small"
+                    <img src="<?php echo "uploads_images/".$img; ?>" class="w3-bar-item w3-circle w3-hide-small"
                         style="width:85px">
                     <div class="w3-bar-item">
                         <span class="w3-xlarge"><?php echo "<b>".$name."</b>" ?></span><br>
