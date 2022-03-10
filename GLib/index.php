@@ -9,10 +9,11 @@
 <body>
     <div class="w3-top w3-margin">
         <div class="w3-bar">
-            <a href="#home" class="w3-bar-item w3-button w3-sans-serif w3-wide" style="font-size: 18px;"><i
-                    class="fa fa-book" style="font-size: 20px; margin-right: 5px;"></i>GLib Notes</a>
+            <a href="#home">
+                <img src="logo.png" width="17%">
+            </a>
 
-            <div class="w3-display-topmiddle">
+            <div class="w3-display-topmiddle" style="margin-top:0.2rem;">
                 <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white  w3-hover-border-black">Home</a>
                 <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-hover-border-black">About
                     Us</a>
@@ -20,7 +21,8 @@
                     Us</a>
             </div>
             <div class="w3-right w3-margin-right">
-                <button type="button" class="w3-button w3-margin-right w3-border-teal w3-round-large w3-border"><a
+                <button type="button"
+                    class="w3-button w3-margin-right w3-hover-teal w3-border-teal w3-round-large w3-border"><a
                         href="login.php" style="text-decoration: none;">Log In Now</a></button>
             </div>
         </div>
