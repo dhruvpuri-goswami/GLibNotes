@@ -219,71 +219,87 @@
             ?>
 
             <div class="w3-padding w3-card w3-padding w3-round-large w3-margin">
-                <ul class="w3-ul">
-                    <li><?php echo "<h4><b>".$file_name."</b></h4>".$desc; ?></li>
-                </ul>
-                <form class="w3-margin">
-                    <button type="submit" class="w3-button w3-teal w3-padding w3-round-large">Show Notes</button>
-                    <button type="submit" class="w3-button w3-red w3-padding w3-round-large">Delete
+                <form action="" method="POST">
+                    <ul class="w3-ul">
+                        <li><?php echo "<h4><b>".$file_name."</b></h4>".$desc; ?></li>
+                    </ul>
+                    <input type="hidden" name="upload_id" value="<?php echo $upload_id; ?>">
+                    <button type="submit" class="w3-margin w3-button w3-teal w3-padding w3-round-large" name="show">
+                        <a href="show_pdf.php?id=<?php echo $upload_id; ?>" target="_blank"
+                            style="text-decoration: none;">Show Notes</a></button>
+                    <button type="submit" class="w3-margin w3-button w3-red w3-padding w3-round-large" name="del">Delete
                         Notes</button>
-                    <button type="submit" class="w3-button w3-blue w3-padding w3-round-large">Edit Notes</button>
+                    <button type="submit" class="w3-margin w3-button w3-blue w3-padding w3-round-large" name="edit">Edit
+                        Notes</button>
                 </form>
             </div>
-            <br>
             <?php
                 }
-        ?>
-
+                ?>
+            <?php
+            if(isset($_REQUEST['del']))
+            {
+                $id=$_REQUEST['upload_id'];
+                $sql4="DELETE FROM tbl_uploads WHERE u_id='$id'";
+                if(mysqli_query($conn,$sql4))
+                {
+                    echo "<script>alert('Deleted Successfully')</script>";
+                }
+                else
+                {
+                    echo "<script>alert('Something Went Wrong')</script>";
+                }
+            }
+            ?>
         </div>
-    </div>
 
-    <script>
-    var openInbox = document.getElementById("myBtn");
-    openInbox.click();
+        <script>
+        var openInbox = document.getElementById("myBtn");
+        openInbox.click();
 
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-        document.getElementById("myOverlay").style.display = "block";
-    }
-
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-        document.getElementById("myOverlay").style.display = "none";
-    }
-
-    function myFunc(id) {
-        var x = document.getElementById(id);
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-            x.previousElementSibling.className += " w3-red";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-            x.previousElementSibling.className =
-                x.previousElementSibling.className.replace(" w3-red", "");
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
         }
-    }
 
-    openMail("Borge")
-
-    function openMail(personName) {
-        var i;
-        var x = document.getElementsByClassName("person");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
         }
-        x = document.getElementsByClassName("test");
-        for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" w3-light-grey", "");
-        }
-        document.getElementById(personName).style.display = "block";
-        event.currentTarget.className += " w3-light-grey";
-    }
-    </script>
 
-    <script>
-    var openTab = document.getElementById("firstTab");
-    openTab.click();
-    </script>
+        function myFunc(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-red";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+                x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace(" w3-red", "");
+            }
+        }
+
+        openMail("Borge")
+
+        function openMail(personName) {
+            var i;
+            var x = document.getElementsByClassName("person");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x = document.getElementsByClassName("test");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" w3-light-grey", "");
+            }
+            document.getElementById(personName).style.display = "block";
+            event.currentTarget.className += " w3-light-grey";
+        }
+        </script>
+
+        <script>
+        var openTab = document.getElementById("firstTab");
+        openTab.click();
+        </script>
 
 </body>
 
