@@ -45,6 +45,8 @@
         position: relative;
         width: 100%;
         overflow: hidden;
+        padding-left: 2rem;
+        padding-right: 2rem;
         padding-top: 56.25%;
         /* 16:9 Aspect Ratio */
     }
@@ -85,7 +87,7 @@
                     $result3 = mysqli_query($conn, $sql3);
                     $userinfo = mysqli_fetch_assoc($result3);
                     $user_name = $userinfo['user_name'];
-            ?>]
+            ?>
         <form action="" method="post">
             <input type="hidden" name="id" value="<?php echo $upload_id; ?>">
             <button type="submit" name="btnpdfopen">
@@ -103,7 +105,7 @@
     </nav>
 
     <!-- Modal that pops up when you click on "New Message" -->
-    <div id="id01" class="w3-modal" style="z-index:4">
+    <div id="id01" class="w3-modal w3-display-middle">
         <div class="w3-modal-content w3-animate-zoom">
             <div class="w3-container w3-padding w3-teal">
                 <span onclick="document.getElementById('id01').style.display='none'"
@@ -184,19 +186,18 @@
 
     <!-- Page content -->
     <div class="w3-main" style="margin-left:320px;">
-        <div class="w3-bar w3-teal w3-right">
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Home</a>
-            <a href="your_notes.php" class="w3-bar-item w3-button w3-mobile">Your Notes</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Edit Profile</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Log Out</a>
-
+        <div class="w3-bar w3-teal">
+            <a href="#" class="w3-bar-item w3-padding-24 w3-right w3-margin-right w3-button w3-mobile">Logout</a>
+            <a href="" class="w3-padding-24 w3-right w3-bar-item w3-button w3-mobile">Edit Profile</a>
+            <a href="your_notes.php" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Your Notes</a>
+            <a href="#" class="w3-bar-item w3-padding-24 w3-right w3-button w3-mobile">Home</a>
         </div>
         <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top"
             onclick="w3_open()"></i>
         <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right"
             onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-pencil"></i></a>
 
-        <div id="Borge" class="">
+        <div id="Borge" class="w3-card w3-margin w3-round-large">
             <?php
             if(isset($_REQUEST['btnpdfopen']))
             {
@@ -205,16 +206,40 @@
                 $result4 = mysqli_query($conn,$sql4);
                 $notes = mysqli_fetch_assoc($result4);
                 $pdf = $notes['uploaded_file'];
+                $uploaded_date = $notes['uploaded_date'];
+                $name=$notes['file_name'];
+                $desc=$notes['file_description'];
+              
                 ?><br>
-            <div class="container">
-                <iframe class="responsive-iframe" src="<?php echo "uploads_images/".$pdf; ?>">
-                </iframe>
+            <ul class="w3-ul w3-white w3-margin w3-card-4 w3-round-large">
+                <li class="w3-bar">
+                    <img src="../GLib/uploads_images/user.png" class="w3-bar-item w3-circle w3-hide-small"
+                        style="width:85px">
+                    <div class="w3-bar-item">
+                        <span class="w3-xlarge"><?php echo "<b>".$name."</b>" ?></span><br>
+                        <span>Uploaded Date : <?php echo $uploaded_date; ?></span>
+                    </div>
+                </li>
+            </ul>
+            <div class="w3-card w3-margin w3-round-large">
+                <div class="container">
+                    <iframe class="responsive-iframe" src="<?php echo "uploads_images/".$pdf; ?>">
+                    </iframe>
+                </div>
             </div>
+            <div class="w3-padding">
+                <h3><b>Description</b></h3>
+            </div>
+            <div class="w3-card w3-margin w3-padding w3-round-large">
+                <p><?php echo $desc;?></p>
+            </div><br><br>
             <?php    
             }
             else
             {?>
-            <h2>Welcome to Glib Notes...</h2>
+            <div class="w3-padding">
+                <h2>Welcome to Glib Notes...</h2>
+            </div>
             <?php
             }
             ?>
