@@ -17,7 +17,8 @@
                 <a href="about.php"
                     class="w3-bar-item w3-button w3-hover-none w3-border-white w3-hover-border-black">About
                     Us</a>
-                <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white  w3-hover-border-black">Contact
+                <a href="contact.php"
+                    class="w3-bar-item w3-button w3-hover-none w3-border-white  w3-hover-border-black">Contact
                     Us</a>
             </div>
             <div class="w3-right w3-margin-right">

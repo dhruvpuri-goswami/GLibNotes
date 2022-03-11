@@ -204,19 +204,23 @@
                     <h2><b>Edit Profile</b></h2>
                 </div>
             </div>
-            <div class="w3-row-padding">
-                <div class="w3-third">
-                    <label>First Name</label>
-                    <input class="w3-input" type="text" placeholder="One">
-                </div>
-                <div class="w3-third">
-                    <label>First Name</label>
-                    <input class="w3-input" type="text" placeholder="Two">
-                </div>
-                <div class="w3-third">
-                    <label>First Name</label>
-                    <input class="w3-input" type="text" placeholder="Three">
-                </div>
+            <div class="w3-row-padding w3-margin"><br>
+                <label>Name</label>
+                <input class="w3-input" type="text" placeholder="One"><br>
+                <label>Email ID</label>
+                <input class="w3-input" type="email" placeholder="One"><br>
+                <label>Mobile No.</label>
+                <input class="w3-input" type="text" placeholder="One"><br>
+                <label>Upload Profile Image</label>
+                <input class="w3-input" type="file" placeholder="One"><br>
+                <label>City</label>
+                <input class="w3-input" type="text" placeholder="One"><br>
+                <label>State</label>
+                <input class="w3-input" type="text" placeholder="One"><br><br>
+                <button type="submit" class="w3-button w3-round-large w3-padding w3-teal"
+                    style="text-decoration: none;"><a href="editprofile.php" style="text-decoration: none;">Edit
+                        Profile</a></button>
+
             </div>
 
         </div>
