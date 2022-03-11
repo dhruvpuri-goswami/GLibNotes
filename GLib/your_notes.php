@@ -95,7 +95,7 @@
             ?>
         <form action="" method="post">
             <input type="hidden" name="id" value="<?php echo $upload_id; ?>">
-            <button type="submit" name="btnpdfopen">
+            <button type="submit" name="btnpdfopen" style="width: 100%;">
                 <ul class="w3-ul">
                     <li><?php echo $file_name. " - ". $user_name; ?></li>
                 </ul>
@@ -162,7 +162,7 @@
                 {
                 sleep(2);
                 echo '<script>
-                alert("Notes Uploaded Successfully Successfully...");
+                alert("Notes Uploaded Successfully...");
                 </script>';
                 }
                 else {
@@ -203,7 +203,7 @@
         <a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right"
             onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-pencil"></i></a>
 
-        <div class="w3-card w3-margin w3-round-large">
+        <div class="w3-card w3-margin w3-round-large w3-padding">
             <div class="w3-padding">
                 <h2><b>Your Notes</b></h2>
             </div>
@@ -230,8 +230,9 @@
                             style="text-decoration: none;">Show Notes</a></button>
                     <button type="submit" class="w3-margin w3-button w3-red w3-padding w3-round-large" name="del">Delete
                         Notes</button>
-                    <button type="submit" class="w3-margin w3-button w3-blue w3-padding w3-round-large" name="edit">Edit
-                        Notes</button>
+                    <button type="submit" class="w3-margin w3-button w3-blue w3-padding w3-round-large" name="edit">
+                        <a href="edit_notes.php?id=<?php echo $upload_id; ?>" style="text-decoration: none;">Edit
+                            Notes</a></button>
                 </form>
             </div>
             <?php

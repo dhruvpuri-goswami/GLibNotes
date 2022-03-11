@@ -297,26 +297,31 @@
                         $result5=mysqli_query($conn,$sql5);
                         $details=mysqli_fetch_all($result5,MYSQLI_ASSOC);
                         ?>
-                        <div class="w3-container w3-card w3-white w3-margin-bottom">
+                        <div class="w3-container w3-card w3-white w3-padding">
                             <h2 class="w3-text-grey w3-padding-16"><i
                                     class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>My Notes
+                                <hr>
                             </h2>
+
                             <?php
                             foreach($details as $detail)
                             {
                             ?>
                             <div class="w3-container">
-                                <h5 class="w3-opacity"><b><?php echo $detail['file_name']; ?></b></h5>
-                                <h6 class="w3-text-teal"><i
+                                <h3 class="w3-opacity"><b><?php echo $detail['file_name']; ?></b></h3>
+                                <h5 class="w3-text-teal"><i
                                         class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $detail['uploaded_date']; ?>
-                                </h6>
-                                <p><?php echo $detail['file_description']; ?></p>
+                                </h5>
+                                <h4><?php echo $detail['file_description']; ?></h4>
                                 <hr>
                             </div>
                             <?php
                             }
                             ?>
+                            <button type="submit" class="w3-button w3-teal w3-round-large w3-padding w3-right">
+                                <a href="your_notes.php" style="text-decoration: none;">Show All Notes</a></button>
                         </div>
+
 
                         <!-- End Right Column -->
                     </div>

@@ -91,9 +91,11 @@
         <form action="" method="post">
             <input type="hidden" name="id" value="<?php echo $upload_id; ?>">
             <button type="submit" name="btnpdfopen">
-                <ul class="w3-ul">
-                    <li><?php echo $file_name. " - ". $user_name; ?></li>
-                </ul>
+                <div class="w3-container">
+                    <ul class="w3-ul">
+                        <li><?php echo $file_name. " - ". $user_name; ?></li>
+                    </ul>
+                </div>
             </button>
         </form>
         <?php

@@ -80,9 +80,9 @@
                                         required="">
                                 </div>
                                 <div class="one-frm">
-                                    <label>Conform Password</label>
+                                    <label>Confirm Password</label>
                                     <input type="password" name="con_password" id="con_password"
-                                        placeholder="Enter Conform Password" required="">
+                                        placeholder="Enter Confirm Password" required="">
                                 </div>
                                 <button type="submit" class="btn btn-style mt-3 w3-teal" name="btn-signup">Sign Up
                                 </button>
