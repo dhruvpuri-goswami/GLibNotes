@@ -157,7 +157,7 @@
                 {
                 sleep(2);
                 echo '<script>
-                alert("Notes Uploaded Successfully Successfully...");
+                alert("Notes Uploaded Successfully...");
                 </script>';
                 }
                 else {

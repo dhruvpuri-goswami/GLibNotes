@@ -204,25 +204,61 @@
                     <h2><b>Edit Profile</b></h2>
                 </div>
             </div>
-            <div class="w3-row-padding w3-margin"><br>
-                <label>Name</label>
-                <input class="w3-input" type="text" placeholder="One"><br>
-                <label>Email ID</label>
-                <input class="w3-input" type="email" placeholder="One"><br>
-                <label>Mobile No.</label>
-                <input class="w3-input" type="text" placeholder="One"><br>
-                <label>Upload Profile Image</label>
-                <input class="w3-input" type="file" placeholder="One"><br>
-                <label>City</label>
-                <input class="w3-input" type="text" placeholder="One"><br>
-                <label>State</label>
-                <input class="w3-input" type="text" placeholder="One"><br><br>
-                <button type="submit" class="w3-button w3-round-large w3-padding w3-teal"
-                    style="text-decoration: none;"><a href="editprofile.php" style="text-decoration: none;">Edit
-                        Profile</a></button>
-
-            </div>
-
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="w3-row-padding w3-margin"><br>
+                    <label>Name</label>
+                    <input class="w3-input" type="text" placeholder="Enter Name" name="name" required><br>
+                    <label>Email ID</label>
+                    <input class="w3-input" type="email" placeholder="Enter Email" name="mail" required><br>
+                    <label>Mobile No.</label>
+                    <input class="w3-input" type="text" placeholder="Enter Mobile No" name="ph_no" required><br>
+                    <label>Upload Profile Image</label>
+                    <input class="w3-input" type="file" name="fileToUpload" required><br>
+                    <label>City</label>
+                    <input class="w3-input" type="text" placeholder="Enter City" name="city" required><br>
+                    <label>State</label>
+                    <input class="w3-input" type="text" placeholder="Enter State" name="state" required><br><br>
+                    <button type="submit" class="w3-button w3-round-large w3-padding w3-teal"
+                        style="text-decoration: none;" name="btnsubmit">Edit Profile</button>
+                </div>
+            </form>
+            <?php
+            if(isset($_REQUEST['btnsubmit']))
+            {
+                $filename = $_FILES["fileToUpload"]["name"];
+                $tempname = $_FILES["fileToUpload"]["tmp_name"];
+                $folder = "uploads_images/";
+                $name = $_REQUEST['name'];
+                $mail = $_REQUEST['mail'];
+                $ph = $_REQUEST['ph_no'];
+                $city = $_REQUEST['city'];
+                $state = $_REQUEST['state'];
+                $sql = "UPDATE tbl_user SET user_name='$name', img='$filename', email='$mail', mobile_no='$ph', city='$city', state='$state' WHERE user_name='$email'";
+                if (mysqli_query($conn,$sql))
+                {
+                if (move_uploaded_file($tempname, $folder.$filename))
+                {
+                    sleep(2);
+                    echo '<script>
+                    alert("Updated Successfully...");
+                    window.location.href="myprofile.php";
+                    </script>';
+                }
+                else {
+                sleep(2);
+                echo '<script>
+                alert("Something Went Wrong...")
+                </script>';
+                }
+                }
+                else {
+                sleep(2);
+                echo '<script>
+                alert("Something Went Wrong...")
+                </script>';
+                }
+            }
+            ?>
         </div>
     </div>
 
