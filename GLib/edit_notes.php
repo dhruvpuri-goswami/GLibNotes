@@ -89,7 +89,7 @@
                     $userinfo = mysqli_fetch_assoc($result3);
                     $user_name = $userinfo['user_name'];
             ?>
-        <form action="" method="post">
+        <form action="userhome.php" method="post">
             <input type="hidden" name="id" value="<?php echo $upload_id; ?>">
             <button type="submit" name="btnpdfopen">
                 <ul class="w3-ul">
