@@ -53,14 +53,18 @@ body {
                     GLib provides every notes in easy way.
                 </p><br>
                 <p>
-                    GLib provides every notes in easy way.
+                    GLib is the one which provide GUI for uploading and searching.
                 </p><br>
                 <p>
-                    GLib provides every notes in easy way.
+                    GLib is faster than other.
                 </p><br>
                 <p>
-                    GLib provides every notes in easy way.
+                    GLib is totally free website.
                 </p><br>
+                <p>
+                    For knowing more, get logged in <a href="login.php" class="w3-hover-teal" style="color: blue;">Click
+                        Me</a>
+                </p>
             </h4>
         </div>
 

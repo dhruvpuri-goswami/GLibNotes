@@ -213,6 +213,7 @@
                         $result4=mysqli_query($conn,$sql4);
                         $userdata=mysqli_fetch_assoc($result4);
                         $name=$userdata['user_name'];
+                        $id=$userdata['user_id'];
                         $img=$userdata['img'];
                         $mail=$userdata['email'];
                         $mobile_no=$userdata['mobile_no'];
@@ -291,21 +292,30 @@
 
                     <!-- Right Column -->
                     <div class="w3-twothird">
-
+                        <?php
+                        $sql5="SELECT * FROM tbl_uploads WHERE user_id='$id' LIMIT 2";
+                        $result5=mysqli_query($conn,$sql5);
+                        $details=mysqli_fetch_all($result5,MYSQLI_ASSOC);
+                        ?>
                         <div class="w3-container w3-card w3-white w3-margin-bottom">
                             <h2 class="w3-text-grey w3-padding-16"><i
                                     class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>My Notes
                             </h2>
+                            <?php
+                            foreach($details as $detail)
+                            {
+                            ?>
                             <div class="w3-container">
-                                <h5 class="w3-opacity"><b>Java Complete Reference</b></h5>
-                                <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 -
-                                    <span class="w3-tag w3-teal w3-round">Current</span>
+                                <h5 class="w3-opacity"><b><?php echo $detail['file_name']; ?></b></h5>
+                                <h6 class="w3-text-teal"><i
+                                        class="fa fa-calendar fa-fw w3-margin-right"></i><?php echo $detail['uploaded_date']; ?>
                                 </h6>
-                                <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur
-                                    est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque
-                                    repellendus iure, iste.</p>
+                                <p><?php echo $detail['file_description']; ?></p>
                                 <hr>
                             </div>
+                            <?php
+                            }
+                            ?>
                         </div>
 
                         <!-- End Right Column -->
