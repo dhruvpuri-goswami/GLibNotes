@@ -206,38 +206,87 @@
             </div>
             <!-- Page Container -->
             <div class="w3-content w3-margin-top" style="max-width:1400px;">
-
                 <!-- The Grid -->
                 <div class="w3-row-padding">
-
+                    <?php
+                        $sql4="SELECT * FROM tbl_user WHERE user_name='$email'";
+                        $result4=mysqli_query($conn,$sql4);
+                        $userdata=mysqli_fetch_assoc($result4);
+                        $name=$userdata['user_name'];
+                        $img=$userdata['img'];
+                        $mail=$userdata['email'];
+                        $mobile_no=$userdata['mobile_no'];
+                        $city=$userdata['city'];
+                        $state=$userdata['state'];
+                    ?>
                     <!-- Left Column -->
                     <div class="w3-third">
 
                         <div class="w3-white w3-text-grey w3-card-4">
                             <div class="w3-display-container">
-                                <img src="./uploads_images/male.png" style="width:100%" alt="Avatar">
+                                <img src="<?php echo "uploads_images/".$img; ?>" style="width:100%" alt="Avatar">
                                 <div class="w3-container w3-text-black">
-                                    <h2>Dhruvpuri Goswami</h2>
+                                    <h2><?php echo $name; ?></h2>
                                 </div>
                             </div>
                             <div class="w3-container">
-                                <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Surat
+                                <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>
+                                    <?php
+                                if(isset($city))
+                                {
+                                    echo $city;
+                                }
+                                else
+                                {
+                                    echo "Not Yet Set";
+                                }
+                                ?>
                                 </p>
-                                <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Gujarat,India
+                                <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>
+                                    <?php
+                                if(isset($state))
+                                {
+                                    echo $state;
+                                }
+                                else
+                                {
+                                    echo "Not Yet Set";
+                                }
+                                ?>
                                 </p>
-                                <p><i
-                                        class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>goswami@gmail.com
+                                <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>
+                                    <?php
+                                if(isset($mail))
+                                {
+                                    echo $mail;
+                                }
+                                else
+                                {
+                                    echo "Not Yet Set";
+                                }
+                                ?>
                                 </p>
-                                <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>7777777777</p>
+                                <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>
+                                    <?php
+                                if(isset($mobile_no))
+                                {
+                                    echo $mobile_no;
+                                }
+                                else
+                                {
+                                    echo "Not Yet Set";
+                                }
+                                ?>
+                                </p>
                                 <button type="submit" class="w3-button w3-round-large w3-padding w3-teal"
-                                    style="text-decoration: none;"><a href="editprofile.php">Edit Profile</a></button>
+                                    style="text-decoration: none;"><a href="editprofile.php"
+                                        style="text-decoration:none;">Edit Profile</a></button>
                                 <hr>
                             </div>
                         </div><br>
 
                         <!-- End Left Column -->
                     </div>
-
 
 
                     <!-- Right Column -->
