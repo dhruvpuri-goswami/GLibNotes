@@ -4,6 +4,11 @@
     {
         $email=$_SESSION['username'];
         include 'connection.php';
+        $sql3 = "SELECT * FROM tbl_user WHERE user_name='$email'";
+        $result3 = mysqli_query($conn, $sql3);
+        $userinfo = mysqli_fetch_assoc($result3);
+        $user_name = $userinfo['user_name'];
+        $un_id=$userinfo['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -203,7 +208,7 @@
                 <h2><b>Your Notes</b></h2>
             </div>
             <?php
-                $sql2 = "SELECT * FROM tbl_uploads WHERE user_id='1'";
+                $sql2 = "SELECT * FROM tbl_uploads WHERE user_id='$un_id'";
                 $result2 = mysqli_query($conn, $sql2);
                 $keywords = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                 foreach($keywords as $keyword)
@@ -212,10 +217,6 @@
                     $upload_id = $keyword['u_id'];
                     $user_id = $keyword['user_id'];
                     $desc=$keyword['file_description'];
-                    $sql3 = "SELECT * FROM tbl_user WHERE user_id='$user_id'";
-                    $result3 = mysqli_query($conn, $sql3);
-                    $userinfo = mysqli_fetch_assoc($result3);
-                    $user_name = $userinfo['user_name'];
             ?>
 
             <div class="w3-padding w3-card w3-padding w3-round-large w3-margin">
